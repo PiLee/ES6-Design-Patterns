@@ -1,11 +1,24 @@
 {
   "name": "es6-design-patterns",
   "version": "1.0.0",
-  "description": "Learning JavaScript Design Patterns in ES6 Notes",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "PiLee",
-  "license": "ISC"
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jade": "^1.11.0"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.9.0",
+    "browser-sync": "^2.12.10",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-changed": "^1.3.0",
+    "gulp-jade": "^1.1.0",
+    "gulp-jshint": "^2.0.1",
+    "gulp-plumber": "^1.1.0"
+  }
 }
