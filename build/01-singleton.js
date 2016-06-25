@@ -27,7 +27,6 @@ var b=Singleton.getInstance('Wei');
 a.getName();	//PiLee
 b.getName();	//PiLee
 console.log(a===b); //true
-
 */
 
 // ES6 实现单例模式
@@ -68,3 +67,75 @@ var b = Singleton.getInstance('Wei');
 a.getName(); //PiLee
 b.getName(); //PiLee
 console.log(a === b); //true
+
+// ES5 透明的单例模式
+/*
+var CreateDiv=(function(){
+	var instance;
+	var CreateDiv=function(html){
+		if(instance){ 
+			return instance;
+		}
+		this.html=html;
+		this.init();
+		return instance=this;
+	}
+
+	CreateDiv.prototype.init=function(){
+		var div=document.createElement('div');
+		div.innerHTML=this.html;
+		document.body.appendChild(div);
+	};
+	return CreateDiv;
+})();
+
+var c1 = new CreateDiv('PiLee');
+var c2 = new CreateDiv('Wei');
+console.log(c1); // html > PiLee
+console.log(c2); // html > PiLee
+console.log(c1===c2); // true
+
+*/
+
+// ES6 透明的单例模式
+var instance = null;
+
+var CreateDiv = function () {
+	_createClass(CreateDiv, null, [{
+		key: 'instance',
+		get: function get() {
+			return instance;
+		},
+		set: function set(_instance) {
+			instance = _instance;
+		}
+	}]);
+
+	function CreateDiv(html) {
+		_classCallCheck(this, CreateDiv);
+
+		if (instance === null) {
+			instance = this;
+			this.html = html;
+			this.init();
+		}
+		return CreateDiv.instance;
+	}
+
+	_createClass(CreateDiv, [{
+		key: 'init',
+		value: function init() {
+			var div = document.createElement('div');
+			div.innerHTML = this.html;
+			document.body.appendChild(div);
+		}
+	}]);
+
+	return CreateDiv;
+}();
+
+var c1 = new CreateDiv('PiLee');
+var c2 = new CreateDiv('Wei');
+console.log(c1); // html > PiLee
+console.log(c2); // html > PiLee
+console.log(c1 === c2); // true
